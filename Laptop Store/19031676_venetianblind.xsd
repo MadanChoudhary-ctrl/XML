@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Madan Choudhary
+     Date: 2021/05/27
+     Venetian Blind -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="laptopStore">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="StoreGroup"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:group name="StoreGroup">
+        <xs:sequence>
+            <xs:element name="storeName" type="xs:string"/>
+            <xs:element name="address" type="AddressType"/>
+            <xs:element name="contact" type="ContactType"/>
+            <xs:element name="website" type="xs:string"/>
+            <xs:element name="laptops" type="LaptopsType"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:simpleType name="TelNumRestriction">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:pattern value="[0-9]{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MobNumRestriction">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:pattern value="(98)[0-9]{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="launchYearRestriction">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:pattern value="[0-9]{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AddressType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attributeGroup ref="AddressAttr"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:attributeGroup name="AddressAttr">
+        <xs:attribute name="country" type="xs:string" fixed="Nepal"/>
+        <xs:attribute name="provinceNo" type="xs:string" fixed="1"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="ContactType">
+        <xs:sequence>
+            <xs:group ref="AddressGroup"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:group name="AddressGroup">
+        <xs:sequence>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="telephoneNumber" type="TelephoneType"/>
+            <xs:element name="mobileNumber" type="MobileType"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="TelephoneType">
+        <xs:simpleContent>
+            <xs:extension base="TelNumRestriction">
+                <xs:attributeGroup ref="TelephoneAttr"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:attributeGroup name="TelephoneAttr">
+        <xs:attribute name="areaCode" type="xs:string" fixed="025"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="MobileType">
+        <xs:simpleContent>
+            <xs:extension base="MobNumRestriction">
+                <xs:attributeGroup ref="MobileAttr"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:attributeGroup name="MobileAttr">
+        <xs:attribute name="countryCode" type="xs:string" fixed="+977"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="LaptopsType">
+        <xs:sequence>
+            <xs:group ref="LaptopGroup"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:group name="LaptopGroup">
+        <xs:sequence>
+            <xs:group ref="Lap1Group"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="Lap1Group">
+        <xs:sequence>
+            <xs:element name="laptop" minOccurs="1" maxOccurs="unbounded" type="LaptopType"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="LaptopType">
+        <xs:sequence>
+            <xs:group ref="Lap2Group"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="LaptopAttr"/>
+    </xs:complexType>
+
+    <xs:group name="Lap2Group">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="specifications" type="SpecificationsType"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:simpleType name="CategoryType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Gaming"/>
+            <xs:enumeration value="Normal"/>
+            <xs:enumeration value="Business"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:attributeGroup name="LaptopAttr">
+        <xs:attribute name="modelNo" type="xs:string" />
+        <xs:attribute name="generation" type="xs:string" />
+        <xs:attribute name="category" type="CategoryType"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="SpecificationsType">
+        <xs:sequence>
+            <xs:group ref="SpecificationsGroup"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="SpecificationsAttr"/>
+    </xs:complexType>
+
+    <xs:group name="SpecificationsGroup">
+        <xs:sequence>
+            <xs:element name="cpu" type="xs:string"/>
+            <xs:element name="ram" type="RamType"/>
+            <xs:element name="storage" type="StorageType"/>
+            <xs:element name="graphics" type="xs:string"/>
+            <xs:element name="display" type="DisplayType"/>
+            <xs:element name="networking" type="xs:string"/>
+            <xs:element name="audio" type="xs:string"/>
+            <xs:element name="battery" type="xs:string"/>
+            <xs:element name="keyboard" type="xs:string"/>
+            <xs:element name="weight" type="xs:string"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:attributeGroup name="SpecificationsAttr">
+        <xs:attribute name="launchYear" type="launchYearRestriction" />
+        <xs:attribute name="price" type="xs:string" />
+    </xs:attributeGroup>
+
+    <xs:complexType name="RamType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attributeGroup ref="RamAttr"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="RamTypesType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DDR2"/>
+            <xs:enumeration value="DDR3"/>
+            <xs:enumeration value="DDR4"/>
+            <xs:enumeration value="DDR5"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:attributeGroup name="RamAttr">
+        <xs:attribute name="type" type="RamTypesType"/>
+        <xs:attribute name="speed" type="xs:string" />
+    </xs:attributeGroup>
+
+    <xs:complexType name="StorageType">
+        <xs:sequence>
+            <xs:group ref="StorageGroup"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:group name="StorageGroup">
+        <xs:sequence>
+            <xs:element name="hdd" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ssd" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="DisplayType">
+        <xs:sequence>
+            <xs:group ref="DisplayGroup"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="DisplayAttr"/>
+    </xs:complexType>
+
+    <xs:group name="DisplayGroup">
+        <xs:sequence>
+            <xs:element name="screenSize" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="resolution" type="xs:string"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:attributeGroup name="DisplayAttr">
+        <xs:attribute name="brightness" type="xs:string" />
+    </xs:attributeGroup>
+</xs:schema>

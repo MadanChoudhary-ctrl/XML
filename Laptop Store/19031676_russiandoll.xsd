@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Madan Choudhary
+     Date: 2021/05/27
+     Russian Doll -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="laptopStore">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="storeName" type="xs:string"/>
+                <xs:element name="address">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="country" type="xs:string" fixed="Nepal"/>
+                                <xs:attribute name="provinceNo" type="xs:string" fixed="1"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="contact">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="email" type="xs:string"/>
+                            <xs:element name="telephoneNumber">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="TelNumRestriction">
+                                            <xs:attribute name="areaCode" type="xs:string" fixed="025"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="mobileNumber">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="MobNumRestriction">
+                                            <xs:attribute name="countryCode" type="xs:string" fixed="+977"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="website" type="xs:string"/>
+                <xs:element name="laptops">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="laptop" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="name" type="xs:string"/>
+                                        <xs:element name="specifications">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="cpu" type="xs:string"/>
+                                                    <xs:element name="ram">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute name="type">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="xs:string">
+                                                                                <xs:enumeration value="DDR2"/>
+                                                                                <xs:enumeration value="DDR3"/>
+                                                                                <xs:enumeration value="DDR4"/>
+                                                                                <xs:enumeration value="DDR5"/>
+                                                                            </xs:restriction>
+                                                                        </xs:simpleType>
+                                                                    </xs:attribute>
+                                                                    <xs:attribute name="speed" type="xs:string" />
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="storage">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="hdd" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                                                                <xs:element name="ssd" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="graphics" type="xs:string"/>
+                                                    <xs:element name="display">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="screenSize" type="xs:string"/>
+                                                                <xs:element name="type" type="xs:string"/>
+                                                                <xs:element name="resolution" type="xs:string"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="brightness" type="xs:string" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="networking" type="xs:string"/>
+                                                    <xs:element name="audio" type="xs:string"/>
+                                                    <xs:element name="battery" type="xs:string"/>
+                                                    <xs:element name="keyboard" type="xs:string"/>
+                                                    <xs:element name="weight" type="xs:string"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="launchYear" type="launchYearRestriction" />
+                                                <xs:attribute name="price" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="modelNo" type="xs:string" />
+                                    <xs:attribute name="generation" type="xs:string" />
+                                    <xs:attribute name="category">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="Gaming"/>
+                                                <xs:enumeration value="Normal"/>
+                                                <xs:enumeration value="Business"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="TelNumRestriction">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:pattern value="[0-9]{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MobNumRestriction">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:pattern value="(98)[0-9]{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="launchYearRestriction">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:pattern value="[0-9]{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

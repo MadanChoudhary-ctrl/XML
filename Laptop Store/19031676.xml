@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Madan Choudhary
+     Date: 2021/05/27  -->
+
+<!DOCTYPE laptopStore SYSTEM "19031676.dtd">
+<laptopStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="19031676_russiandoll.xsd">
+    <storeName>Computer Planet</storeName>
+    <address country="Nepal" provinceNo="1">Biratnagar</address>
+    <contact>
+        <email>computerplanet123@gmail.com</email>
+        <telephoneNumber areaCode="025">237840</telephoneNumber>
+        <mobileNumber countryCode="+977">9852021640</mobileNumber>
+    </contact>
+    <website>www.cplanetnp.com</website>
+    <laptops>
+        <laptop modelNo="PSL48U-01S004" generation="9th" category="Gaming">
+            <name>Lenovo Legion 5</name>
+            <specifications launchYear="2020" price="NPR. 130,000">
+                <cpu>AMD Ryzen 5 4600H Processor</cpu>
+                <ram type="DDR4" speed="3200 Mhz">8 Gb</ram>
+                <storage>
+                    <hdd>1 Tb</hdd>
+                    <ssd>256 Gb</ssd>
+                </storage>
+                <graphics>GTX 1650Ti 4Gb GDDR6</graphics>
+                <display brightness="250 nits">
+                    <screenSize>15.6 inch</screenSize>
+                    <type>IPS Display</type>
+                    <resolution>Full-HD (1920 x 1080 Pixels)</resolution>
+                </display>
+                <networking>Wi-Fi 6™ 802.11AX (2 x 2) &amp; Bluetooth 5.0</networking>
+                <audio>Harman speakers with Dolby Audio</audio>
+                <battery>4 Cell Li-polymer 60Wh</battery>
+                <keyboard>RGB Backlight Keyboard</keyboard>
+                <weight>2.3 Kg</weight>
+            </specifications>
+        </laptop>
+
+        <laptop modelNo="AFL90E-04P348" generation="10th" category="Gaming">
+            <name>Acer Nitro</name>
+            <specifications launchYear="2018" price="NPR. 130,000">
+                <cpu>Intel Core i5-10300H 2.50 GHz Turbo upto 4.5GHz</cpu>
+                <ram type="DDR4" speed="3200 Mhz">8 Gb</ram>
+                <storage>
+                    <ssd>512 Gb</ssd>
+                </storage>
+                <graphics>NVIDIA GeForce GTX 1650ti with 4GB GDDR6</graphics>
+                <display brightness="250 nits">
+                    <screenSize>15.6 inch</screenSize>
+                    <type>IPS Display</type>
+                    <resolution>Full-HD (1920 x 1080 Pixels)</resolution>
+                </display>
+                <networking>IEEE 802.11ax</networking>
+                <audio>Harman speakers with Dolby Audio</audio>
+                <battery>4-cell Lithium Ion 3320 mAh</battery>
+                <keyboard>RGB Backlight Keyboard</keyboard>
+                <weight>2.3 Kg</weight>
+            </specifications>
+        </laptop>
+    </laptops>
+</laptopStore>

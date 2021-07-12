@@ -1,0 +1,54 @@
+<?xml encoding="UTF-8"?>
+<!-- Author: Madan Choudhary
+     Date: 2021/05/27  -->
+
+<!ELEMENT laptopStore (storeName,address,contact,website,laptops)>
+<!ATTLIST laptopStore
+  xmlns:xsi CDATA #FIXED 'http://www.w3.org/2001/XMLSchema-instance'
+  xsi:noNamespaceSchemaLocation NMTOKEN #REQUIRED
+>
+<!ELEMENT storeName (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ATTLIST address
+    country CDATA #FIXED "Nepal"
+    provinceNo CDATA #FIXED "1">
+<!ELEMENT contact (email,telephoneNumber,mobileNumber)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT telephoneNumber (#PCDATA)>
+<!ATTLIST telephoneNumber areaCode CDATA #FIXED "025">
+<!ELEMENT mobileNumber (#PCDATA)>
+<!ATTLIST mobileNumber countryCode CDATA #FIXED "+977">
+<!ELEMENT website (#PCDATA)>
+<!ELEMENT laptops (laptop)+>
+<!ELEMENT laptop (name,specifications)>
+<!ATTLIST laptop
+    modelNo CDATA #REQUIRED
+    generation CDATA #REQUIRED
+    category (Gaming|Normal|Business) "Normal">
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT specifications (cpu,ram,storage,graphics,display,networking,
+                          audio,battery,keyboard,weight)>
+<!ATTLIST specifications
+    launchYear CDATA #REQUIRED
+    price CDATA #REQUIRED
+>
+<!ELEMENT cpu (#PCDATA)>
+<!ELEMENT ram (#PCDATA)>
+<!ATTLIST ram
+    type (DDR2|DDR3|DDR4|DDR5) "DDR4"
+    speed CDATA #REQUIRED
+>
+<!ELEMENT storage (hdd?,ssd?)>
+<!ELEMENT hdd (#PCDATA)>
+<!ELEMENT ssd (#PCDATA)>
+<!ELEMENT graphics (#PCDATA)>
+<!ELEMENT display (screenSize,type,resolution)>
+<!ATTLIST display brightness CDATA #REQUIRED>
+<!ELEMENT screenSize (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT resolution (#PCDATA)>
+<!ELEMENT networking (#PCDATA)>
+<!ELEMENT audio (#PCDATA)>
+<!ELEMENT battery (#PCDATA)>
+<!ELEMENT keyboard (#PCDATA)>
+<!ELEMENT weight (#PCDATA)>
